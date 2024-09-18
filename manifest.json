@@ -5,8 +5,8 @@
     "optional": [],
     "js": "index.js",
     "css": "style.css",
-    "author": "Your Name",
-    "version": "1.0.0",
+    "author": "xccr",
+    "version": "0.0.1",
     "homePage": "https://github.com/cxxr2/Clickable_Map_Extension",
     "auto_update": true
 }

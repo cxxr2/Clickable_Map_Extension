@@ -1,20 +1,31 @@
 import { getContext } from "../../extensions.js";
-import { eventSource, event_types } from "../../../script.js";
 
-const context = getContext();
-const mapLocations = [
-    { name: 'Town Square', x: 150, y: 200, width: 50, height: 50 },
-    { name: 'Forest Edge', x: 300, y: 400, width: 60, height: 60 },
-    { name: 'Castle Gate', x: 500, y: 100, width: 40, height: 40 }
-];
+// Define the base URL and endpoint
+const OLLAMA_API_URL = 'http://127.0.0.1:11434/'; // Replace with actual Ollama API URL
 
+// Fetch and display map data
+async function fetchMapData() {
+    try {
+        const response = await fetch(OLLAMA_API_URL, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer YOUR_API_KEY', // Replace YOUR_API_KEY with your actual API key
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        console.log('Map data:', data);
+        // Process and use the data as needed
+    } catch (error) {
+        console.error('Error fetching map data:', error);
+    }
+}
+
+// Initialize map and set up event listeners
 document.addEventListener('DOMContentLoaded', function() {
-    const mapImage = document.createElement('img');
-    mapImage.src = 'map_univ.png'; // Update with actual path
-    mapImage.alt = 'Map';
-    mapImage.style.width = '100%';
-    mapImage.style.height = 'auto';
-    document.body.appendChild(mapImage);
+    fetchMapData(); // Fetch map data when the document is loaded
+
+    const mapImage = document.getElementById('map-image');
 
     mapImage.addEventListener('click', function(event) {
         const rect = mapImage.getBoundingClientRect();
@@ -35,25 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function travelToLocation(locationName) {
-        // Example function to handle travel logic
-        // Replace this with actual Silly Tavern API call
         console.log(`Traveling to ${locationName}...`);
-
-        // Notify Silly Tavern of the new location
         context.chat.addMessage(`Traveling to ${locationName}`);
-
-        // Example of using Extras API
-        // const url = new URL(getApiUrl());
-        // url.pathname = '/api/travel';
-        // doExtrasFetch(url, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ location: locationName })
-        // });
     }
 });
 
-// Optionally listen for specific events
-eventSource.on(event_types.CHAT_CHANGED, function() {
-    console.log('Chat changed event detected');
-});
