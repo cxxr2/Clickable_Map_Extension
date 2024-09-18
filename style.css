@@ -1,0 +1,12 @@
+/* Basic styles for the map container */
+#map-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#map-image {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}

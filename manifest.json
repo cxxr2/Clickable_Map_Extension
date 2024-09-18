@@ -1,0 +1,12 @@
+{
+    "display_name": "Clickable_Map_Extension",
+    "loading_order": 1,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Your Name",
+    "version": "1.0.0",
+    "homePage": "https://github.com/cxxr2/Clickable_Map_Extension",
+    "auto_update": true
+}
